@@ -1,5 +1,6 @@
 package main
 
+// original version O(n)
 func largestAltitude(gain []int) int {
 	maxPoint := 0
 	sum := 0
