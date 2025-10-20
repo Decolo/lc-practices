@@ -2,11 +2,13 @@ package main
 
 type RecentCounter struct {
 	request []int
+	start   int
 }
 
 func Constructor() RecentCounter {
 	return RecentCounter{
 		request: []int{},
+		start:   0,
 	}
 }
 
@@ -16,11 +18,11 @@ func (this *RecentCounter) Ping(t int) int {
 
 	minLimit := t - 3000
 
-	for len(this.request) > 0 && this.request[0] < minLimit {
-		this.request = this.request[1:]
+	for len(this.request) > 0 && this.request[this.start] < minLimit {
+		this.start++
 	}
 
-	return len(this.request)
+	return len(this.request) - this.start
 }
 
 /**
